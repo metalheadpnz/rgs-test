@@ -1,15 +1,27 @@
 import React, {useState} from 'react';
-import Button from '@mui/material/Button';
+import Button, {ButtonProps} from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+
 
 type PropsType = {
     options: Array<string>
     setFilter: (option: string) => void
     activeFilters: Array<string>
+    title?: string,
+    buttonProps?: ButtonProps
+
 }
 
-export const AddFilter: React.FC<PropsType> = ({options, setFilter, activeFilters}) => {
+export const AddFilter: React.FC<PropsType> = (
+    {
+        options,
+        setFilter,
+        activeFilters,
+        title,
+        buttonProps
+    }
+) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
     const open = Boolean(anchorEl);
@@ -29,9 +41,16 @@ export const AddFilter: React.FC<PropsType> = ({options, setFilter, activeFilter
     return (
         <>
             <Button
+                // style={{width: "150px"}}
+                sx={{padding: '6px 16px'}}
+                variant={open ? 'contained' : 'text'}
+                color={open ? 'secondary' : 'primary'}
                 onClick={handleClick}
-            >
-                Фильтры
+                {...buttonProps}
+            >   {title}
+                {/*<Typography sx={{fontWeight: 'bold'}}>*/}
+
+                {/*</Typography>*/}
             </Button>
 
             <Menu

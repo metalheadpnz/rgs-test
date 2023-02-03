@@ -4,6 +4,8 @@ import Button from "@mui/material/Button";
 import s from './Filterrs.module.scss'
 import {TextField} from "@mui/material";
 import {FilterItem} from "./FilterItem";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import AddIcon from '@mui/icons-material/Add';
 
 const filters = {
     ['Дата рождения']: ['Дата рождения'],
@@ -11,8 +13,9 @@ const filters = {
     ['Задачи']: ['Открытые', 'Просроченные', 'Завершенные'],
     ['Убытки']: ['Убытки1', 'Убытки2', 'Убытки3', 'Убытки4', 'Убытки5'],
     ['Премия']: ['Премия1', 'Премия2', 'Премия3',],
-    ['test']: new Array(8).fill('test')
+    ['test']: new Array(50).fill('test')
 }
+
 
 export const FiltersComponent = () => {
     //const [activeFilters, setActiveFilters] = useState<Array<string>>([])
@@ -42,6 +45,8 @@ export const FiltersComponent = () => {
                     placeholder={'ФИО страхователя'}/>
                 <div className={s.controlButtons}>
                     <AddFilter
+                        buttonProps={{endIcon: <FilterAltIcon/>}}
+                        title={'Фильтры'}
                         setFilter={activeFilterHandler}
                         activeFilters={activeFilters}
                         options={Object.keys(filters)}/>
@@ -67,8 +72,9 @@ export const FiltersComponent = () => {
 
                 {Boolean(activeFilters.length) &&
                     <>
-
                         <AddFilter
+                            title={'Добавить фильтр'}
+                            buttonProps={{endIcon: <AddIcon/>}}
                             setFilter={activeFilterHandler}
                             activeFilters={activeFilters}
                             options={Object.keys(filters)}/>
@@ -79,7 +85,6 @@ export const FiltersComponent = () => {
                     </>
                 }
             </div>
-
 
         </div>
     )
