@@ -14,11 +14,13 @@
 
 .activeFilters {
   display: flex;
+
+  .resetButton {
+    margin-left: auto;
+  }
+
 }
 
-.resetButton {
-  margin-left: auto;
-}
 
 .bottomItemMenu {
   display: flex;

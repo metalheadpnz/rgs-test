@@ -64,9 +64,6 @@ export const FilterItem: React.FC<PropsType> = (
             <Button
                 variant='outlined'
                 id="basic-button"
-                // aria-controls={open ? "basic-menu" : undefined}
-                // aria-haspopup="true"
-                // aria-expanded={open ? "true" : undefined}
                 onClick={handleClick}
             >
                 {title}

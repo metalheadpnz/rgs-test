@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {AddFilter} from "../addFilter/AddFilter";
 import Button from "@mui/material/Button";
 import s from './Filterrs.module.scss'
-import {Input} from "@mui/material";
+import {TextField} from "@mui/material";
 import {FilterItem, OptionType} from "./FilterItem";
 
 const optionsList: Array<string> = [
@@ -11,6 +11,10 @@ const optionsList: Array<string> = [
     'Задачи',
     'Убытки',
     'Премия'
+]
+
+const tasksFilterOptions = [
+    'Открытые', 'Просроченные', 'Завершенные'
 ]
 
 // const options = [
@@ -35,16 +39,17 @@ export const FiltersComponent = () => {
     }
 
     const [options, setOptions] = useState<Array<OptionType>>(() =>
-        optionsList.map((option, id) => ({name: option, id, checked: false}))
+        tasksFilterOptions.map((option, id) => ({name: option, id, checked: false}))
     )
 
     return (
         <div>
             <div className={s.controls}>
-                <div className={s.searchBlock}>
-                    <Input/>
-                </div>
-
+                {/*<div className={s.searchBlock}>*/}
+                {/*    <Input/>*/}
+                {/*</div>*/}
+                <TextField
+                    placeholder={'ФИО страхователя'}/>
                 <div className={s.controlButtons}>
                     <AddFilter
                         setFilter={activeFilterHandler}
@@ -71,6 +76,7 @@ export const FiltersComponent = () => {
 
                 {Boolean(activeFilters.length) &&
                     <>
+
                         <AddFilter
                             setFilter={activeFilterHandler}
                             activeFilters={activeFilters}
@@ -81,14 +87,6 @@ export const FiltersComponent = () => {
                             onClick={() => setActiveFilters([])}/>
                     </>
                 }
-
-                {/*<FilterItem*/}
-                {/*    removeSelf={removeFilterHandler}*/}
-                {/*    options={options}*/}
-                {/*    setOptions={setOptions}*/}
-                {/*    title='Задачи'*/}
-                {/*/>*/}
-
             </div>
 
 
