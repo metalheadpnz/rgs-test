@@ -3,44 +3,28 @@ import {AddFilter} from "../addFilter/AddFilter";
 import Button from "@mui/material/Button";
 import s from './Filterrs.module.scss'
 import {TextField} from "@mui/material";
-import {FilterItem, OptionType} from "./FilterItem";
+import {FilterItem} from "./FilterItem";
 
-const optionsList: Array<string> = [
-    'Дата рождения',
-    'Договоры',
-    'Задачи',
-    'Убытки',
-    'Премия'
-]
-
-const tasksFilterOptions = [
-    'Открытые', 'Просроченные', 'Завершенные'
-]
-
-// const options = [
-//     {name: 'Дата рождения', id: 1, checked: false},
-//     {name: 'Договоры', id: 2, checked: false},
-//     {name: 'Задачи', id: 3, checked: false},
-//     {name: 'Убытки', id: 4, checked: false},
-//     {name: 'Премия', id: 5, checked: false},
-// ]
-
+const filters = {
+    ['Дата рождения']: ['Дата рождения'],
+    ['Договоры']: ['договоры1', 'договоры2', 'договоры3', 'договоры4'],
+    ['Задачи']: ['Открытые', 'Просроченные', 'Завершенные'],
+    ['Убытки']: ['Убытки1', 'Убытки2', 'Убытки3', 'Убытки4', 'Убытки5'],
+    ['Премия']: ['Премия1', 'Премия2', 'Премия3',]
+}
 
 export const FiltersComponent = () => {
-    const [activeFilters, setActiveFilters] = useState<Array<string>>([])
+    //const [activeFilters, setActiveFilters] = useState<Array<string>>([])
+    const [activeFilters, setActiveFilters] = useState([])
 
     const activeFilterHandler = (option: string) => {
+        //@ts-ignore
         setActiveFilters(perv => [...perv, option])
     }
 
-    const removeFilterHandler = (filterName: string) => {
-        const filters = activeFilters.filter(f => f !== filterName)
-        setActiveFilters(filters)
+    const onFilterChange = (checkedOptions: string[], filterName: string) => {
+        console.log(`${filterName} = `, checkedOptions)
     }
-
-    const [options, setOptions] = useState<Array<OptionType>>(() =>
-        tasksFilterOptions.map((option, id) => ({name: option, id, checked: false}))
-    )
 
     return (
         <div>
@@ -54,7 +38,7 @@ export const FiltersComponent = () => {
                     <AddFilter
                         setFilter={activeFilterHandler}
                         activeFilters={activeFilters}
-                        options={optionsList}/>
+                        options={Object.keys(filters)}/>
                     <Button
                         variant='contained'
                     >
@@ -64,15 +48,17 @@ export const FiltersComponent = () => {
 
             </div>
             <div className={s.activeFilters}>
-                {/*{activeFilters.map(filter => <Button key={filter}>{filter}</Button>)}*/}
-                {activeFilters.map(filter =>
-                    <FilterItem
-                        key={filter}
-                        removeSelf={removeFilterHandler}
-                        options={options}
-                        setOptions={setOptions}
-                        title={filter}
-                    />)}
+                {activeFilters.map(filter => {
+
+                        return <FilterItem
+                            key={filter}
+                            title={filter}
+                            onChange={onFilterChange}
+                            removeSelf={() => {
+                            }}
+                            options={filters[filter]}/>
+                    }
+                )}
 
                 {Boolean(activeFilters.length) &&
                     <>
@@ -80,7 +66,7 @@ export const FiltersComponent = () => {
                         <AddFilter
                             setFilter={activeFilterHandler}
                             activeFilters={activeFilters}
-                            options={optionsList}/>
+                            options={Object.keys(filters)}/>
                         <Button
                             children={"Сбросить все"}
                             className={s.resetButton}

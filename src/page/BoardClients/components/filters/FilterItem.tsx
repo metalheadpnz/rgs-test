@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -7,9 +7,9 @@ import s from './Filterrs.module.scss'
 
 type PropsType = {
     title: string
-    options: OptionType[]
-    setOptions: React.Dispatch<React.SetStateAction<OptionType[]>>
+    options: Array<string>
     removeSelf: (filter: string) => void
+    onChange: (checkedOptions: string[], filterName: string) => void
 }
 
 export type OptionType = {
@@ -20,10 +20,10 @@ export type OptionType = {
 
 export const FilterItem: React.FC<PropsType> = (
     {
-        options,
-        setOptions,
         title,
-        removeSelf
+        removeSelf,
+        options,
+        onChange
     }
 ) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -35,28 +35,31 @@ export const FilterItem: React.FC<PropsType> = (
         setAnchorEl(null);
     };
 
-    const menuItemClickHandler = (id: number) => {
-        setOptions(prev => prev.map((opt) =>
-            opt.id === id ? {...opt, checked: !opt.checked} : opt
-        ))
+    const [checkedOptions, setCheckedOptions] = useState<Array<string>>([])
+
+    const menuItemClickHandler = (option: string) => {
+        const newOptions = checkedOptions.includes(option)
+            ? checkedOptions.filter(opt => opt !== option)
+            : [...checkedOptions, option]
+        setCheckedOptions(newOptions)
+        onChange && onChange(newOptions, title)
     }
 
     const selectAllCheckbox = () => {
-        setOptions(prev => prev.map(opt => (
-            {...opt, checked: true}
-        )))
+        const newOptions = [...options]
+        setCheckedOptions(newOptions)
+        onChange && onChange(newOptions, title)
     }
 
     const clearAllCheckbox = () => {
-        setOptions(prev => prev.map(opt => (
-            {...opt, checked: false}
-        )))
+        const newOptions: [] = []
+        setCheckedOptions(newOptions)
+        onChange && onChange(newOptions, title)
     }
 
-    const selectedCheckBoxAmount = options.reduce((acc, item) => {
-        return acc + (item.checked ? 1 : 0)
-
-    }, 0)
+    const isChecked = (option: string) => {
+        return checkedOptions.includes(option)
+    }
 
 
     return (
@@ -71,27 +74,27 @@ export const FilterItem: React.FC<PropsType> = (
 
             <Menu
                 PaperProps={{sx: {width: '324px'}}}
-                id="basic-menu"
+                // id="basic-menu"
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
 
             >
-                {options.map(option =>
-                    <MenuItem
-                        key={option.id}
-                        value={option.name}
-                        onClick={() => menuItemClickHandler(option.id)}>
-                        <Checkbox checked={option.checked}/>
-                        <ListItemText primary={option.name}/>
-                    </MenuItem>
-                )}
+                {
+                    options.map(option => <MenuItem
+                        key={option}
+                        onClick={() => menuItemClickHandler(option)}
+                    >
+                        <Checkbox checked={isChecked(option)}/>
+                        <ListItemText primary={option}/>
+                    </MenuItem>)
+                }
                 <Divider/>
                 <div className={s.bottomItemMenu}>
-                    <MenuItem disabled={selectedCheckBoxAmount === options.length}
+                    <MenuItem disabled={checkedOptions.length === options.length}
                               onClick={selectAllCheckbox}>Выбрать все</MenuItem>
-                    {selectedCheckBoxAmount
-                        ? <MenuItem onClick={clearAllCheckbox}>Сбросить ({selectedCheckBoxAmount})</MenuItem>
+                    {checkedOptions.length
+                        ? <MenuItem onClick={clearAllCheckbox}>Сбросить ({checkedOptions.length})</MenuItem>
                         : <MenuItem onClick={() => removeSelf(title)}>Удалить</MenuItem>}
                 </div>
             </Menu>
