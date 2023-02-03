@@ -12,12 +12,6 @@ type PropsType = {
     onChange: (checkedOptions: string[], filterName: string) => void
 }
 
-export type OptionType = {
-    name: string
-    id: number
-    checked: boolean
-}
-
 export const FilterItem: React.FC<PropsType> = (
     {
         title,
@@ -61,6 +55,9 @@ export const FilterItem: React.FC<PropsType> = (
         return checkedOptions.includes(option)
     }
 
+    const deleteBtnHandler = () => {
+        removeSelf(title)
+    }
 
     return (
         <div>
@@ -95,7 +92,7 @@ export const FilterItem: React.FC<PropsType> = (
                               onClick={selectAllCheckbox}>Выбрать все</MenuItem>
                     {checkedOptions.length
                         ? <MenuItem onClick={clearAllCheckbox}>Сбросить ({checkedOptions.length})</MenuItem>
-                        : <MenuItem onClick={() => removeSelf(title)}>Удалить</MenuItem>}
+                        : <MenuItem onClick={deleteBtnHandler}>Удалить</MenuItem>}
                 </div>
             </Menu>
 

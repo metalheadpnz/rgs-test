@@ -10,7 +10,8 @@ const filters = {
     ['Договоры']: ['договоры1', 'договоры2', 'договоры3', 'договоры4'],
     ['Задачи']: ['Открытые', 'Просроченные', 'Завершенные'],
     ['Убытки']: ['Убытки1', 'Убытки2', 'Убытки3', 'Убытки4', 'Убытки5'],
-    ['Премия']: ['Премия1', 'Премия2', 'Премия3',]
+    ['Премия']: ['Премия1', 'Премия2', 'Премия3',],
+    ['test']: new Array(8).fill('test')
 }
 
 export const FiltersComponent = () => {
@@ -25,6 +26,11 @@ export const FiltersComponent = () => {
     const onFilterChange = (checkedOptions: string[], filterName: string) => {
         console.log(`${filterName} = `, checkedOptions)
     }
+
+    const removeCurrentFilter = (filterName: string) => {
+        setActiveFilters(prevState => prevState.filter(f => f !== filterName))
+    }
+
 
     return (
         <div>
@@ -54,8 +60,7 @@ export const FiltersComponent = () => {
                             key={filter}
                             title={filter}
                             onChange={onFilterChange}
-                            removeSelf={() => {
-                            }}
+                            removeSelf={removeCurrentFilter}
                             options={filters[filter]}/>
                     }
                 )}
