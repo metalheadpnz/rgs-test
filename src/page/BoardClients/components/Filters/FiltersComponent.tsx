@@ -9,6 +9,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LoginIcon from '@mui/icons-material/Login';
 import {FilterItem} from "./FilterItem";
 
+import GitHubLabel from "./MyComponent";
+
 
 const filters = {
     ['Дата рождения']: ['Дата рождения'],
@@ -93,7 +95,7 @@ export const FiltersComponent = () => {
                     </>
                 }
             </div>
-
+            <GitHubLabel/>
         </div>
     )
 }

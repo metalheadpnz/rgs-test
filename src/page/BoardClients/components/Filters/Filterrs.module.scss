@@ -56,17 +56,16 @@
   .filterButton {
     color: $darkGray;
     background-color: $lightGray;
-
+    border: 1px solid $gray;
   }
 }
 
-
-.filled{
-  .filterButton{
+.filled {
+  .filterButton {
     color: $purple;
     background-color: #e4dcef;
     border: 1px solid $purple;
-    }
+  }
 }
 
 

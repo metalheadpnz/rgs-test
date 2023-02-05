@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import {Checkbox, Divider, ListItemText} from "@mui/material";
+import {Checkbox, Divider, ListItemText, Paper} from "@mui/material";
 import s from './Filterrs.module.scss'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+
 
 type PropsType = {
     title: string
@@ -23,6 +24,7 @@ export const FilterItem: React.FC<PropsType> = (
     }
 ) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    console.log(anchorEl)
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -81,6 +83,20 @@ export const FilterItem: React.FC<PropsType> = (
                 onClose={handleClose}
 
             >
+                <Paper>
+                    111
+                </Paper>
+            </Menu>
+
+            <Menu
+                PaperProps={{sx: {width: '324px'}}}
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+
+            >
+
+
                 {
                     options.map(option => <MenuItem
                         key={option}
@@ -99,6 +115,7 @@ export const FilterItem: React.FC<PropsType> = (
                         : <MenuItem onClick={deleteBtnHandler}>Удалить</MenuItem>}
                 </div>
             </Menu>
+
 
         </div>
     );
