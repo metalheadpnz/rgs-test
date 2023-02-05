@@ -1,0 +1,22 @@
+@import "src/theme/var";
+
+.wrap {
+  display: inline-block;
+  margin-right: 8px;
+
+  .withIcon {
+    background-color: $lightGray;
+    color: $darkGray;
+  }
+
+  .withOutIcon{
+    //background-color: $lightGray;
+    color: $gray;
+  }
+  .withOutIconOpen{
+    background-color: $lightGray;
+    color: $darkGray;
+  }
+}
+
+

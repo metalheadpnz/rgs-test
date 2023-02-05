@@ -7,12 +7,13 @@ export const theme = createTheme({
         },
         secondary:{
             main: '#5e5e5e'
-        }
+        },
     },
     typography: {
         button: {
             textTransform: 'none',
             fontWeight: "bold"
         }
-    }
+    },
+
 })

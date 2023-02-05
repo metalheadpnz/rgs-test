@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 import s from './Filterrs.module.scss'
 import {TextField} from "@mui/material";
 import {FilterItem} from "./FilterItem";
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import AddIcon from '@mui/icons-material/Add';
 
 const filters = {
@@ -44,17 +43,19 @@ export const FiltersComponent = () => {
                 <TextField
                     placeholder={'ФИО страхователя'}/>
                 <div className={s.controlButtons}>
+
                     <AddFilter
-                        buttonProps={{endIcon: <FilterAltIcon/>}}
-                        title={'Фильтры'}
+                        variant={'withIcon'}
                         setFilter={activeFilterHandler}
                         activeFilters={activeFilters}
                         options={Object.keys(filters)}/>
+
                     <Button
                         variant='contained'
-                    >
-                        Добавить клиента
-                    </Button>
+                        children={'Добавить клиента'}
+                        endIcon={<AddIcon/>}
+                    />
+
                 </div>
 
             </div>
@@ -73,8 +74,7 @@ export const FiltersComponent = () => {
                 {Boolean(activeFilters.length) &&
                     <>
                         <AddFilter
-                            title={'Добавить фильтр'}
-                            buttonProps={{endIcon: <AddIcon/>}}
+                            variant={'withOutIcon'}
                             setFilter={activeFilterHandler}
                             activeFilters={activeFilters}
                             options={Object.keys(filters)}/>
