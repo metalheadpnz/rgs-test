@@ -4,6 +4,8 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import {Checkbox, Divider, ListItemText} from "@mui/material";
 import s from './Filterrs.module.scss'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 type PropsType = {
     title: string
@@ -60,18 +62,20 @@ export const FilterItem: React.FC<PropsType> = (
     }
 
     return (
-        <div>
+        <div className={`${s.filterWrapper} ${checkedOptions.length ? s.filled : ''}`}>
             <Button
+                className={s.filterButton}
                 variant='outlined'
-                id="basic-button"
+                color={'secondary'}
                 onClick={handleClick}
+                endIcon={open ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
             >
+
                 {title}
             </Button>
 
             <Menu
                 PaperProps={{sx: {width: '324px'}}}
-                // id="basic-menu"
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}

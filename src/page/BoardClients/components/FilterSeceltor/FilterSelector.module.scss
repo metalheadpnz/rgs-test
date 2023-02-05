@@ -9,13 +9,27 @@
     color: $darkGray;
   }
 
-  .withOutIcon{
+  .withOutIcon {
     //background-color: $lightGray;
     color: $gray;
   }
-  .withOutIconOpen{
+
+  .withOutIconOpen {
     background-color: $lightGray;
     color: $darkGray;
+  }
+}
+
+.menuItem:hover {
+  & svg {
+    display: inline-block;
+  }
+}
+
+.menuItem {
+  margin-right: -22px;
+  & svg {
+    display: none;
   }
 }
 

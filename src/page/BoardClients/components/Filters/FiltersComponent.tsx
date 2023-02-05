@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
-import {AddFilter} from "../addFilter/AddFilter";
+import {FilterSelector} from "../FilterSeceltor/FilterSelector";
 import Button from "@mui/material/Button";
 import s from './Filterrs.module.scss'
-import {TextField} from "@mui/material";
-import {FilterItem} from "./FilterItem";
+import {InputAdornment, TextField} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+import SearchIcon from '@mui/icons-material/Search';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LoginIcon from '@mui/icons-material/Login';
+import {FilterItem} from "./FilterItem";
+
 
 const filters = {
     ['Дата рождения']: ['Дата рождения'],
@@ -17,7 +21,6 @@ const filters = {
 
 
 export const FiltersComponent = () => {
-    //const [activeFilters, setActiveFilters] = useState<Array<string>>([])
     const [activeFilters, setActiveFilters] = useState([])
 
     const activeFilterHandler = (option: string) => {
@@ -35,45 +38,50 @@ export const FiltersComponent = () => {
 
 
     return (
-        <div>
-            <div className={s.controls}>
-                {/*<div className={s.searchBlock}>*/}
-                {/*    <Input/>*/}
-                {/*</div>*/}
-                <TextField
-                    placeholder={'ФИО страхователя'}/>
-                <div className={s.controlButtons}>
+        <div className={s.wrap}>
 
-                    <AddFilter
+            <div className={s.controls}>
+                <TextField sx={{"& fieldset": {border: 'none'}, backgroundColor: '#f2f2f5', borderRadius: '4px'}}
+                           InputProps={{
+                               endAdornment: (<InputAdornment position="end"><SearchIcon/></InputAdornment>),
+                           }}
+                           inputProps={
+                               {style: {padding: '10px 14px'}}
+                           }
+                           placeholder={'ФИО страхователя'}/>
+
+                <div className={s.icons}>
+                    <SettingsIcon/>
+                    <LoginIcon/>
+                </div>
+
+                <div className={s.controlButtons}>
+                    <FilterSelector
                         variant={'withIcon'}
                         setFilter={activeFilterHandler}
                         activeFilters={activeFilters}
                         options={Object.keys(filters)}/>
-
                     <Button
                         variant='contained'
                         children={'Добавить клиента'}
                         endIcon={<AddIcon/>}
                     />
-
                 </div>
-
             </div>
-            <div className={s.activeFilters}>
-                {activeFilters.map(filter => {
 
-                        return <FilterItem
-                            key={filter}
-                            title={filter}
-                            onChange={onFilterChange}
-                            removeSelf={removeCurrentFilter}
-                            options={filters[filter]}/>
-                    }
+            <div className={s.activeFilters}>
+                {activeFilters.map(filter =>
+                    <FilterItem
+                        key={filter}
+                        title={filter}
+                        onChange={onFilterChange}
+                        removeSelf={removeCurrentFilter}
+                        options={filters[filter]}/>
                 )}
 
                 {Boolean(activeFilters.length) &&
                     <>
-                        <AddFilter
+                        <FilterSelector
                             variant={'withOutIcon'}
                             setFilter={activeFilterHandler}
                             activeFilters={activeFilters}

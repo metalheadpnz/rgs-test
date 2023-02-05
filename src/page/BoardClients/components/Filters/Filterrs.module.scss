@@ -1,0 +1,72 @@
+@import "src/theme/var";
+
+.wrap {
+  //border: 1px dashed orangered;
+
+  & > div {
+    //border: 2px dashed #457242;
+    margin: 12px;
+  }
+}
+
+.controlButtons {
+  justify-self: flex-start;
+  align-self: flex-start;
+}
+
+.controls {
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchBlock {
+
+}
+
+.activeFilters {
+
+  display: flex;
+
+  .resetButton {
+    margin-left: auto;
+  }
+
+}
+
+.bottomItemMenu {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.icons {
+  display: inline-block;
+  margin-right: auto;
+
+  & * {
+    color: #66686b;
+    padding: 8px 0 0 12px;
+  }
+}
+
+.filterWrapper {
+  margin-right: 12px;
+
+  .filterButton {
+    color: $darkGray;
+    background-color: $lightGray;
+
+  }
+}
+
+
+.filled{
+  .filterButton{
+    color: $purple;
+    background-color: #e4dcef;
+    border: 1px solid $purple;
+    }
+}
+
+

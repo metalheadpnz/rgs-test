@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import Button, {ButtonProps} from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import s from './AddFilter.module.scss'
+import s from './FilterSelector.module.scss'
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import AddIcon from '@mui/icons-material/Add';
+import {ListItemIcon} from "@mui/material";
 
 
 type PropsType = {
@@ -16,7 +17,7 @@ type PropsType = {
     variant: 'withIcon' | 'withOutIcon'
 }
 
-export const AddFilter: React.FC<PropsType> = (
+export const FilterSelector: React.FC<PropsType> = (
     {
         options,
         setFilter,
@@ -42,7 +43,6 @@ export const AddFilter: React.FC<PropsType> = (
         setFilter && setFilter(options[index])
     }
 
-
     return (
         <div className={s.wrap}>
             <Button
@@ -64,10 +64,21 @@ export const AddFilter: React.FC<PropsType> = (
                     {
                         options.map((menuItem, index) =>
                             <MenuItem
+                                className={s.menuItem}
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'space-between',
+                                }}
                                 disabled={activeFilters.includes(menuItem)}
                                 onClick={(event) => handleMenuItemClick(event, index)}
                                 key={index}>
                                 {menuItem}
+
+                                <ListItemIcon>
+                                    <AddIcon/>
+                                </ListItemIcon>
+
                             </MenuItem>)
                     }
                 </div>
