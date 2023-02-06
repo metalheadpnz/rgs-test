@@ -12,15 +12,23 @@ import {FilterItem} from "./FilterItem";
 import GitHubLabel from "./MyComponent";
 
 
+const delMe = []
+for (let i = 0; i < 15; i++) {
+    delMe[i] = `Тест${i + 1}`
+}
+
+
 const filters = {
     ['Дата рождения']: ['Дата рождения'],
     ['Договоры']: ['договоры1', 'договоры2', 'договоры3', 'договоры4'],
     ['Задачи']: ['Открытые', 'Просроченные', 'Завершенные'],
     ['Убытки']: ['Убытки1', 'Убытки2', 'Убытки3', 'Убытки4', 'Убытки5'],
     ['Премия']: ['Премия1', 'Премия2', 'Премия3',],
-    ['test']: new Array(50).fill('test')
+    ['test2']: delMe
 }
-
+const getValue = (val: any) => {
+    console.log(val)
+}
 
 export const FiltersComponent = () => {
     const [activeFilters, setActiveFilters] = useState([])
@@ -73,12 +81,20 @@ export const FiltersComponent = () => {
 
             <div className={s.activeFilters}>
                 {activeFilters.map(filter =>
-                    <FilterItem
+                    // <FilterItem
+                    //     key={filter}
+                    //     title={filter}
+                    //     onChange={onFilterChange}
+                    //     removeSelf={removeCurrentFilter}
+                    //     options={filters[filter]}/>
+
+                    <GitHubLabel
                         key={filter}
+                        getValue={getValue}
                         title={filter}
-                        onChange={onFilterChange}
+                        options={filters[filter]}
                         removeSelf={removeCurrentFilter}
-                        options={filters[filter]}/>
+                    />
                 )}
 
                 {Boolean(activeFilters.length) &&
@@ -95,7 +111,6 @@ export const FiltersComponent = () => {
                     </>
                 }
             </div>
-            {/*<GitHubLabel/>*/}
         </div>
     )
 }
