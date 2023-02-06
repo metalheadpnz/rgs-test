@@ -7,7 +7,7 @@ import {Typography} from "@mui/material";
 function App() {
 
     return (
-        <div style={{display: 'flex', margin: '0 20px 0 0'}}>
+        <div style={{display: 'flex', margin: '0 20px 0 0', height: "100vh"}}>
             <SideBar/>
             <div style={{width: '100%'}}>
                 <Header/>

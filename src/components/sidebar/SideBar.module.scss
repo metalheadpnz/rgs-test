@@ -1,5 +1,11 @@
 @import "src/theme/var";
 
+.wrap{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .logo {
   //border: 1px dashed rebeccapurple;
   //margin-bottom: 30px;
@@ -17,4 +23,8 @@
   & svg {
     fill: $primary;
   }
+}
+
+.bottomMenu{
+
 }
