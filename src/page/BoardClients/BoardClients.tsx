@@ -4,7 +4,7 @@ import {ClientsTable} from "./components/tabe/ClientsTable";
 
 export const BoardClients = () => {
     return (
-        <div style={{width: '100%'}}>
+        <div style={{marginTop: '20px'}}>
             <FiltersComponent/>
             <ClientsTable/>
         </div>

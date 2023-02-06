@@ -1,0 +1,6 @@
+.wrap{
+    height: 80px;
+    border: 1px dashed lightblue;
+    display: flex;
+    justify-content: end;
+}

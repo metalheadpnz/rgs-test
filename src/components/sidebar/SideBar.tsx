@@ -28,7 +28,7 @@ export const SideBar = () => {
 
             <List>
                 {menuItems.map((menuItem, index) => (
-                    <ListItem key={menuItem.menuTitle} className={index === 0 ? s.menuItemSelected : ''}>
+                    <ListItem key={menuItem.menuTitle} className={index === 1 ? s.menuItemSelected : ''}>
                         <ListItemButton>
                             <ListItemIcon>
                                 <menuItem.icon/>
