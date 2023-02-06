@@ -95,7 +95,7 @@ export const FiltersComponent = () => {
                     </>
                 }
             </div>
-            <GitHubLabel/>
+            {/*<GitHubLabel/>*/}
         </div>
     )
 }

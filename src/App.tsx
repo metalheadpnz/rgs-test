@@ -1,10 +1,14 @@
 import React from 'react';
 import {BoardClients} from "./page/BoardClients/BoardClients";
+import {SideBar} from "./components/sidebar/SideBar";
 
 function App() {
 
     return (
-        <BoardClients/>
+        <div style={{display: 'flex'}}>
+            <SideBar/>
+            <BoardClients/>
+        </div>
     );
 }
 
