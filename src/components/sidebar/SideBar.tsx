@@ -1,8 +1,17 @@
 import React from 'react';
-import {Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
-import MailIcon from '@mui/icons-material/Mail';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import s from './SideBar.module.scss'
+import {Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
+import HomeIcon from '@mui/icons-material/Home';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import WidgetsIcon from '@mui/icons-material/Widgets';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 
+const menuItems = [
+    {menuTitle: 'Главная', icon: HomeIcon},
+    {menuTitle: 'Клиенты', icon: PeopleAltIcon},
+    {menuTitle: 'Договоры', icon: WidgetsIcon},
+    {menuTitle: 'Задачи', icon: ListAltIcon},
+]
 
 export const SideBar = () => {
     return (
@@ -13,31 +22,22 @@ export const SideBar = () => {
             // onClick={toggleDrawer(anchor, false)}
             // onKeyDown={toggleDrawer(anchor, false)}
         >
+            <ListItem className={s.logo}>
+                <h2>РОСГОССТРАХ</h2>
+            </ListItem>
+
             <List>
-                {['Главная', 'Клиенты', 'Договоры', 'Задачи'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
+                {menuItems.map((menuItem, index) => (
+                    <ListItem key={menuItem.menuTitle} className={index === 0 ? s.menuItemSelected : ''}>
                         <ListItemButton>
                             <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}
+                                <menuItem.icon/>
                             </ListItemIcon>
-                            <ListItemText primary={text}/>
+                            <ListItemText primary={menuItem.menuTitle}/>
                         </ListItemButton>
                     </ListItem>
                 ))}
             </List>
-            {/*<Divider/>*/}
-            {/*<List>*/}
-            {/*    {['All mail', 'Trash', 'Spam'].map((text, index) => (*/}
-            {/*        <ListItem key={text} disablePadding>*/}
-            {/*            <ListItemButton>*/}
-            {/*                <ListItemIcon>*/}
-            {/*                    {index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}*/}
-            {/*                </ListItemIcon>*/}
-            {/*                <ListItemText primary={text}/>*/}
-            {/*            </ListItemButton>*/}
-            {/*        </ListItem>*/}
-            {/*    ))}*/}
-            {/*</List>*/}
         </Box>
     );
 };

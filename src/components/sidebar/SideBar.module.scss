@@ -1,0 +1,19 @@
+@import "src/theme/var";
+
+.logo {
+  //border: 1px dashed rebeccapurple;
+  //margin-bottom: 30px;
+
+  h2 {
+    color: $primary;
+    text-align: center;
+  }
+}
+
+.menuItemSelected {
+  color: $primary;
+
+  & svg {
+    fill: $primary;
+  }
+}
