@@ -9,7 +9,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LoginIcon from '@mui/icons-material/Login';
 
 import {FilterItem} from "./FilterItem";
-import {DateFilter} from "./DateFilter";
+import {DateFilter} from "./DateFilter/DateFilter";
 
 
 const delMe = []
@@ -90,7 +90,10 @@ export const FiltersComponent = () => {
                             title={filter}
                             options={filters[filter]}
                             removeSelf={removeCurrentFilter}/>
-                        : <DateFilter key={filter}/>
+                        : <DateFilter key={filter}
+                                      title={filter}
+                                      removeSelf={removeCurrentFilter}
+                        />
                 )}
 
                 {Boolean(activeFilters.length) &&

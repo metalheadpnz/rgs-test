@@ -1,0 +1,85 @@
+@import "src/theme/var";
+
+.menu {
+  & ul {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  & .dateDisplay {
+    justify-content: left;
+    padding-left: 24px;
+  }
+}
+
+//
+//.wrap {
+//  //border: 1px dashed orangered;
+//
+//  & > div {
+//    //border: 2px dashed #457242;
+//    //margin: 12px;
+//  }
+//}
+//
+//.controlButtons {
+//  justify-self: flex-start;
+//  align-self: flex-start;
+//}
+//
+//.controls {
+//  //border: 2px dashed olive;
+//  margin-bottom: 10px;
+//  display: flex;
+//  justify-content: space-between;
+//}
+//
+//.searchBlock {
+//
+//}
+//
+//.activeFilters {
+//  //border: 1px solid black;
+//  margin-bottom: 10px;
+//  display: flex;
+//
+//  .resetButton {
+//    margin-left: auto;
+//  }
+//
+//}
+//
+//.bottomItemMenu {
+//  display: flex;
+//  justify-content: space-between;
+//  padding: 0 20px;
+//}
+//
+//.icons {
+//  display: inline-block;
+//  margin-right: auto;
+//
+//  & * {
+//    color: #66686b;
+//    padding: 8px 0 0 12px;
+//  }
+//}
+//
+//.filterWrapper {
+//  margin-right: 12px;
+//
+//  .filterButton {
+//    color: $darkGray;
+//    background-color: $lightGray;
+//    border: 1px solid $gray;
+//  }
+//}
+//
+//.filled {
+//  .filterButton {
+//    color: $purple;
+//    background-color: #e4dcef;
+//    border: 1px solid $purple;
+//  }
+//}
+//
+//
