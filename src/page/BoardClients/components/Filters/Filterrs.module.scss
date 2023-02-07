@@ -30,6 +30,10 @@
   margin-bottom: 10px;
   display: flex;
 
+  & div {
+    margin-right: 10px;
+  }
+
   .resetButton {
     margin-left: auto;
   }

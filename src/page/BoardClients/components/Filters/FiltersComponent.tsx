@@ -83,17 +83,19 @@ export const FiltersComponent = () => {
 
             <div className={s.activeFilters}>
                 {activeFilters.map((filter) =>
-                    filter !== 'Дата'
-                        ? <FilterItem
-                            key={filter}
-                            getValue={getValue}
-                            title={filter}
-                            options={filters[filter]}
-                            removeSelf={removeCurrentFilter}/>
-                        : <DateFilter key={filter}
-                                      title={filter}
-                                      removeSelf={removeCurrentFilter}
-                        />
+                    <div>
+                        {filter !== 'Дата'
+                            ? <FilterItem
+                                key={filter}
+                                getValue={getValue}
+                                title={filter}
+                                options={filters[filter]}
+                                removeSelf={removeCurrentFilter}/>
+                            : <DateFilter key={filter}
+                                          title={filter}
+                                          removeSelf={removeCurrentFilter}
+                            />}
+                    </div>
                 )}
 
                 {Boolean(activeFilters.length) &&
