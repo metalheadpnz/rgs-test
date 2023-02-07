@@ -7,13 +7,12 @@ import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LoginIcon from '@mui/icons-material/Login';
-import {FilterItem} from "./FilterItem";
 
 import MyComponent from "./MyComponent";
 
 
 const delMe = []
-for (let i = 0; i < 6; i++) {
+for (let i = 0; i < 8; i++) {
     delMe[i] = `Тест${i + 1}`
 }
 
@@ -24,7 +23,9 @@ const filters = {
     ['Задачи']: ['Открытые', 'Просроченные', 'Завершенные'],
     ['Убытки']: ['Убытки1', 'Убытки2', 'Убытки3', 'Убытки4', 'Убытки5'],
     ['Премия']: ['Премия1', 'Премия2', 'Премия3',],
-    ['test2']: delMe
+    ['test8']: delMe,
+    ['test9']: [...delMe, 'Тест9'],
+
 }
 const getValue = (val: any) => {
     console.log(val)
