@@ -90,7 +90,7 @@ export const FiltersComponent = () => {
                             title={filter}
                             options={filters[filter]}
                             removeSelf={removeCurrentFilter}/>
-                        : <DateFilter/>
+                        : <DateFilter key={filter}/>
                 )}
 
                 {Boolean(activeFilters.length) &&
