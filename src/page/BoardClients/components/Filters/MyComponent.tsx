@@ -40,10 +40,10 @@ const StyledAutocompletePopper = styled('div')(({theme}) => ({
         [`& .${autocompleteClasses.option}`]: {
             minHeight: 'auto',
             alignItems: 'flex-start',
-            padding: 8,
-            borderBottom: `1px solid  ${
-                theme.palette.mode === 'light' ? ' #eaecef' : '#30363d'
-            }`,
+            // padding: 8,
+            // borderBottom: `1px solid  ${
+            //     theme.palette.mode === 'light' ? ' #eaecef' : '#30363d'
+            // }`,
             '&[aria-selected="true"]': {
                 backgroundColor: 'transparent',
             },
@@ -65,12 +65,15 @@ function PopperComponent(props: PopperComponentProps) {
 }
 
 const StyledPopper = styled(Popper)(({theme}) => ({
-    border: `1px solid ${theme.palette.mode === 'light' ? '#e1e4e8' : '#30363d'}`,
+    //border: `1px solid ${theme.palette.mode === 'light' ? '#e1e4e8' : '#30363d'}`,
+    // border: `1px solid red`,
     boxShadow: `0 8px 24px ${
         theme.palette.mode === 'light' ? 'rgba(149, 157, 165, 0.2)' : 'rgb(1, 4, 9)'
     }`,
     borderRadius: 6,
-    width: 300,
+    // width: 300,
+    minWidth: 232,
+    maxWidth: 324,
     zIndex: theme.zIndex.modal,
     fontSize: 13,
     color: theme.palette.mode === 'light' ? '#24292e' : '#c9d1d9',
@@ -80,23 +83,23 @@ const StyledPopper = styled(Popper)(({theme}) => ({
 const StyledInput = styled(InputBase)(({theme}) => ({
     padding: 10,
     width: '100%',
-    borderBottom: `1px solid ${
-        theme.palette.mode === 'light' ? '#eaecef' : '#30363d'
-    }`,
+    // borderBottom: `1px solid ${
+    //     theme.palette.mode === 'light' ? '#eaecef' : '#30363d'
+    // }`,
     '& input': {
-        borderRadius: 4,
+        // borderRadius: 4,
         backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#0d1117',
         padding: 8,
         transition: theme.transitions.create(['border-color', 'box-shadow']),
-        border: `1px solid ${theme.palette.mode === 'light' ? '#eaecef' : '#30363d'}`,
+        border: `1px solid gray`,
         fontSize: 14,
         '&:focus': {
-            boxShadow: `0px 0px 0px 3px ${
-                theme.palette.mode === 'light'
-                    ? 'rgba(3, 102, 214, 0.3)'
-                    : 'rgb(12, 45, 107)'
-            }`,
-            borderColor: theme.palette.mode === 'light' ? '#0366d6' : '#388bfd',
+            // boxShadow: `0px 0px 0px 3px ${
+            //     theme.palette.mode === 'light'
+            //         ? 'rgba(3, 102, 214, 0.3)'
+            //         : 'rgb(12, 45, 107)'
+            // }`,
+            // borderColor: theme.palette.mode === 'light' ? '#0366d6' : '#388bfd',
         },
     },
 }));
@@ -136,7 +139,7 @@ export default function ({
     const theme = useTheme();
 
 
-    const labels = useMemo(() => options.map(option => ({name: option as string, description: option as string})), [])
+    const labels = useMemo(() => options.map(option => ({name: option, description: option})), [])
 
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -226,12 +229,12 @@ export default function ({
                             noOptionsText="No labels"
                             renderOption={(props, option, {selected}) => {
 
-                                return <MenuItem {...props}>
-                                    <Checkbox checked={selected}/>
-                                    <ListItemText primary={option.name}/>
-                                </MenuItem>
-
-
+                                return (
+                                    <MenuItem {...props}>
+                                        <Checkbox checked={selected} sx={{alignSelf: "center"}}/>
+                                        <ListItemText primary={option.name} sx={{alignSelf: "center"}}/>
+                                    </MenuItem>
+                                )
                             }}
 
                             // <li {...props}>
@@ -333,40 +336,3 @@ interface LabelType {
 }
 
 
-const labels2 = [
-    {
-        name: 'good first issue',
-        color: '#7057ff',
-        description: 'Good for newcomers',
-    },
-    {
-        name: 'help wanted',
-        color: '#008672',
-        description: 'Extra attention is needed',
-    },
-    {
-        name: 'priority: critical',
-        color: '#b60205',
-        description: '',
-    },
-    {
-        name: 'priority: high',
-        color: '#d93f0b',
-        description: '',
-    },
-    {
-        name: 'priority: low',
-        color: '#0e8a16',
-        description: '',
-    },
-    {
-        name: 'priority: medium',
-        color: '#fbca04',
-        description: '',
-    },
-    {
-        name: "status: can't reproduce",
-        color: '#fec1c1',
-        description: '',
-    },
-];

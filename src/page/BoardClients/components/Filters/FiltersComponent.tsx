@@ -9,11 +9,11 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LoginIcon from '@mui/icons-material/Login';
 import {FilterItem} from "./FilterItem";
 
-import GitHubLabel from "./MyComponent";
+import MyComponent from "./MyComponent";
 
 
 const delMe = []
-for (let i = 0; i < 15; i++) {
+for (let i = 0; i < 6; i++) {
     delMe[i] = `Тест${i + 1}`
 }
 
@@ -80,21 +80,23 @@ export const FiltersComponent = () => {
             </div>
 
             <div className={s.activeFilters}>
-                {activeFilters.map(filter =>
-                    // <FilterItem
-                    //     key={filter}
-                    //     title={filter}
-                    //     onChange={onFilterChange}
-                    //     removeSelf={removeCurrentFilter}
-                    //     options={filters[filter]}/>
+                {activeFilters.map((filter) =>
 
-                    <GitHubLabel
-                        key={filter}
-                        getValue={getValue}
-                        title={filter}
-                        options={filters[filter]}
-                        removeSelf={removeCurrentFilter}
-                    />
+                        // <FilterItem
+                        //     key={filter}
+                        //     title={filter}
+                        //     onChange={onFilterChange}
+                        //     removeSelf={removeCurrentFilter}
+                        //     options={filters[filter]}/>
+
+                        <MyComponent
+                            key={filter}
+                            getValue={getValue}
+                            title={filter}
+                            options={filters[filter]}
+                            removeSelf={removeCurrentFilter}
+                        />
+
                 )}
 
                 {Boolean(activeFilters.length) &&
