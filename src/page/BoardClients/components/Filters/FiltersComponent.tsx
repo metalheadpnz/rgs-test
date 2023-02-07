@@ -8,7 +8,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LoginIcon from '@mui/icons-material/Login';
 
-import MyComponent from "./MyComponent";
+import {FilterItem} from "./FilterItem";
+import {DateFilter} from "./DateFilter";
 
 
 const delMe = []
@@ -18,7 +19,7 @@ for (let i = 0; i < 8; i++) {
 
 
 const filters = {
-    ['Дата рождения']: ['Дата рождения'],
+    ['Дата']: [],
     ['Договоры']: ['договоры1', 'договоры2', 'договоры3', 'договоры4'],
     ['Задачи']: ['Открытые', 'Просроченные', 'Завершенные'],
     ['Убытки']: ['Убытки1', 'Убытки2', 'Убытки3', 'Убытки4', 'Убытки5'],
@@ -82,22 +83,14 @@ export const FiltersComponent = () => {
 
             <div className={s.activeFilters}>
                 {activeFilters.map((filter) =>
-
-                        // <FilterItem
-                        //     key={filter}
-                        //     title={filter}
-                        //     onChange={onFilterChange}
-                        //     removeSelf={removeCurrentFilter}
-                        //     options={filters[filter]}/>
-
-                        <MyComponent
+                    filter !== 'Дата'
+                        ? <FilterItem
                             key={filter}
                             getValue={getValue}
                             title={filter}
                             options={filters[filter]}
-                            removeSelf={removeCurrentFilter}
-                        />
-
+                            removeSelf={removeCurrentFilter}/>
+                        : <DateFilter/>
                 )}
 
                 {Boolean(activeFilters.length) &&
